@@ -17,7 +17,22 @@ library(tidyverse)
 ```
 
 ```{r}
-Euro_data <- read.csv("https://en.wikipedia.org/wiki/UEFA_Euro_2020_squads") %>%
+raw_data <- read_csv("birthdates.csv", col_types = cols(value = col_character()))
+  
   
 ```
+```{r}
+raw_data %>% 
+  mutate(date = parse_date(str_sub(value, 2, 11))) %>% 
+  mutate(raw_month = months(date)) %>% 
+  mutate(month = parse_factor(raw_month, levels = month.name)) %>% 
+  group_by(month) %>% 
+  summarize(total = n()) %>%
+ggplot(mapping = aes(x = fct_rev(month), y = total, fill = month)) +
+  geom_col() +
+  coord_flip()
+  
+
+```
+
 
