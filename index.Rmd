@@ -13,6 +13,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Learn more about publishing to GitHub Pages at:
 # https://rstudio.github.io/distill/publish_website.html#github-pages
+library(tidyverse)
+```
 
+```{r}
+Euro_data <- read.csv("https://en.wikipedia.org/wiki/UEFA_Euro_2020_squads") %>%
+  
 ```
 
